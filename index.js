@@ -39,6 +39,13 @@ function drawSquares(){
     }
 }
 
+class node{
+    constructor({pos, path}){
+        if(pos[0] < 0 || pos[0] > 7 || pos[1] < 0 || pos[1] > 7) return null;
+        return { pos, path }
+    }
+}
+
 class knight{
     constructor(){
         this.width = 50;
@@ -48,7 +55,10 @@ class knight{
         this.position = {
             x: 200,
             y: 200
-        };        
+        };
+        this.moves = [
+            [1, 2], [1, -2], [2, 1], [2, -1], [-1, 2], [-1, -2], [-2, 1], [-2, -1] 
+        ];        
     }
 
     draw(){
@@ -78,6 +88,7 @@ function animate(){
 }
 
 const knightPiece = new knight();
+
 
 // drawSquares();
 animate();
