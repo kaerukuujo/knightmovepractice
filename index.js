@@ -9,11 +9,8 @@ let hoveringKnight = false;
 
 class Node{
     constructor(pos, path){
-        if(pos[0] < 0 || pos[0] > 7 || pos[1] < 0 || pos[1] > 7){
-            return null;
-        } else {
-            return { pos, path }
-        }
+        this.pos = pos;
+        this.path = path;          
     }
 }
 
@@ -48,10 +45,12 @@ function knightMoves([x,y], [a,b]){
         currentNode = queue.shift();
         // console.log(currentNode);
     }
-    console.log(`if took ${currentNode.path.length - 1} moves to reach ${[a,b]}`);
+    console.log(`if took ${currentNode.path.length - 1} moves to reach ${[a + 1, b + 1]}`);
+    let pathToTile = [];
     currentNode.path.forEach((pos) => {
-        console.log(pos);
+        pathToTile.push(pos);
     });
+    console.log(pathToTile)
 }
 
 function drawSquares(){
@@ -136,6 +135,7 @@ canvas.addEventListener('mousemove', (event) => {
 });
 canvas.addEventListener('click', () => {
     console.log(`mouseX: ${mouseX}, mouseY: ${mouseY}`);
+    if(mouseX < 0 || mouseX > 7 || mouseY < 0 || mouseY > 7) return null;
     knightMoves(
         [(knightPiece.position.x / 50), (knightPiece.position.y / 50)],
         [mouseX, mouseY]        
